@@ -1283,4 +1283,97 @@ client.on("guildMemberAdd", member => {
 انت العضو رقم ${member.guild.memberCount} `) 
 }).catch(console.error)
 });
+  client.on('message', msg => {//msg
+    if (msg.content === 'slm') {
+      msg.channel.send({file : "https://cdn.discordapp.com/attachments/460792477016784897/467623839732465664/Screenshot_4.jpg "})
+    }
+  });;
+  
+    client.on('message', message => {
+   if(message.content.startsWith(prefix + "invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+               let mmmmEmbed = new Discord.RichEmbed()
+                         .setAuthor(client.user.username)
+                         .setThumbnail(message.author.avatarURL)
+ .addField(` لقد قمت بدعوة :`, ` ${inviteCount} `)
+           .setFooter(`- Requested By: ${message.author.tag}`);
+           message.channel.send(mmmmEmbed)
+});
+  }
+});
+
+
+
+  client.on('voiceStateUpdate', (codes, ReBeL) => {
+if(ReBeL.voiceChannelID !== "ايدي الروم اللي ينقلك لروم ثاني") return console.log("أيرور . ");
+ReBeL.guild.createChannel(ReBeL.user.username , 'voice').then((rebeeel) =>{
+    rebeeel.setParent("ايدي الكاتاجوري اللي يكون فيها الرومات المؤقته");
+ReBeL.guild.members.get(ReBeL.id).setVoiceChannel(rebeeel.id).then((codess) =>{
+  console.log("تــــــم .");
+  let scan = setInterval(()=>{
+if(!ReBeL.voiceChannel) {
+  rebeeel.delete();
+}
+  }, 1700);
+});
+});
+});
+
+client.on('message', message => {
+    if (message.content.startsWith("+hack")) {
+      if (message.author.bot) return
+           message.delete();
+             let args = message.content.split(' ').slice(1);
+                   let virusname = args.join(' ');
+                 if (virusname < 1) {
+                     return message.channel.send("``اكتب اسم الشخص الي تبي يتهكر``");
+                                     }
+                 message.channel.send({embed: new Discord.RichEmbed().setTitle('Loading ' + virusname + "...").setColor(0xFF0000)}).then(function(m) {
+             setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Virus [▓ ] 1%').setColor(0xFF0000)})
+             }, 1000)
+            setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Virus [▓▓▓▓] 25%').setColor(0xFF0000)})
+             }, 2000)
+           setTimeout(function() {     
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Loading Discord Virus [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ] 100%').setColor(0xFF0000)})
+             }, 3000)
+                setTimeout(function() {
+               m.edit({embed: new Discord.RichEmbed().setTitle('[' + virusname + ']: Uploaded! Initiating explosion in 1...').setColor(0xFF0000)})
+             }, 4000)
+              setTimeout(function() {
+               m.delete()
+           }, 5000)
+             setTimeout(function() {
+               message.channel.send('تم تهكيرك')
+           }, 6000)
+           });
+         }
+ });
+ 
+ client.on('message', message => {
+    if(message.content === 'xboomx'){
+        message.channel.send('n3amm')
+    }
+});
+client.on('message', message => {
+    if(message.content === 'yousseftube'){
+        message.channel.send('tbi la')
+    }
+});
+	client.on("message", message => {
+    var prefix = "+"
+    if (!message.content.startsWith(prefix)) return;
+      let command = message.content.split(" ")[0];
+      command = command.slice(prefix.length);
+        if(command === "mcskin") {
+                const args = message.content.split(" ").slice(1).join(" ")
+        if (!args) return message.channel.send("** Type your skin name **");
+        const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
+    message.channel.send(image)
+        }
+    });
 client.login(process.env.BOT_TOKEN);
